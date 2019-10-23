@@ -13,35 +13,35 @@ public class Person implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_persona")
-    private Integer idPersona;
-    @Column(name="nombre")
-    private String nombre;
+    @Column(name="id_person")
+    private Integer idPerson;
+    @Column(name="name")
+    private String name;
 
     public Person(){}
     
     public Person(Integer idPersona){
-        this.idPersona = idPersona;
+        this.idPerson = idPersona;
     }
     
     public Person(String nombre){
-        this.nombre = nombre;
+        this.name = nombre;
     }
     
-    public Integer getIdPersona() {
-        return idPersona;
+    public Integer getIdPerson() {
+        return idPerson;
     }
 
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public void setIdPerson(Integer idPerson) {
+        this.idPerson = idPerson;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
     
     

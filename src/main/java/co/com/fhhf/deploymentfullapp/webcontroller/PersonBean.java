@@ -22,16 +22,16 @@ public class PersonBean {
     @Autowired
     private PersonService service;
 
-    @GetMapping("/agregaP") //hace map al metodo GET en la url indicada
+    @GetMapping("/addP") //hace map al metodo GET en la url indicada
     public String greeting(@RequestParam(name = "name", required = false, defaultValue = "") String name, Model model) {
         Person p = new Person();
         if (name.equals("")) {
         }
         else{
-            p.setNombre(name);
+            p.setName(name);
             service.addPerson(p);
-            model.addAttribute("pAgregada", p.getNombre());
+            model.addAttribute("personAdded", p.getName());
         }
-        return "agregar"; //llama la vista (html) con ese nombre
+        return "add"; //llama la vista (html) con ese nombre
     }
 }
