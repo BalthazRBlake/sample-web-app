@@ -23,7 +23,7 @@ public class PersonBean {
     private PersonService service;
 
     @GetMapping("/addP") //hace map al metodo GET en la url indicada
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "") String name, Model model) {
+    public String adding(@RequestParam(name = "name", required = false, defaultValue = "") String name, Model model) {
         Person p = new Person();
         if (name.equals("")) {
         }
@@ -32,6 +32,13 @@ public class PersonBean {
             service.addPerson(p);
             model.addAttribute("personAdded", p.getName());
         }
-        return "add"; //llama la vista (html) con ese nombre
+        return "people"; //llama la vista (html) con ese nombre
     }
+    
+    @GetMapping("/list")
+    public String listing(Model model){
+        model.addAttribute("people", service.personList());
+        return "people";
+    }
+    
 }

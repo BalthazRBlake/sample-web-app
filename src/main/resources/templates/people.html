@@ -6,6 +6,15 @@
 </head>
 <body>
     <p th:text="'Added person, ' + ${personAdded} + '!'" />
+    
+    <table>
+        <th:block th:each = "per : ${people}">
+            <tr>
+                <td th:text = "${per.idPerson}"></td>
+                <td th:text = "${per.name}"></td>
+            </tr>
+        </th:block>
+    </table>
     <p><a href="/">Home</a></p>
 </body>
 </html>
