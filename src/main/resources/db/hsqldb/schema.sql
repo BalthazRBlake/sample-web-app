@@ -1,0 +1,6 @@
+DROP TABLE person IF EXISTS;
+
+CREATE TABLE person (
+  id_person INTEGER IDENTITY PRIMARY KEY,
+  name VARCHAR(30)
+);
