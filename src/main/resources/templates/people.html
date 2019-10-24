@@ -1,22 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-    <p>Send your request on the search bar ex: /addP?name=myName</p>
-    
-    <p th:text="'Added person, ' + ${personAdded} + '!'" />
-    
-    <table>
-        <th:block th:each = "per : ${people}">
-            <tr>
-                <td th:text = "${per.idPerson}"></td>
-                <td th:text = "${per.name}"></td>
-            </tr>
-        </th:block>
-    </table>
-    <p><a href="/">Home</a></p>
-</body>
+    <head>
+        <title>Getting Started: Serving Web Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p>Send your request on the search bar ex: /addP?name=myName</p>
+
+        <form action="/addP">
+            <fieldset>
+                <input type="text" name="email" />
+                <input type="submit" value="Add!"/>
+            </fieldset>
+        </form>
+
+        <p th:text="'Added person, ' + ${personAdded} + '!'" />
+
+        <table>
+            <th:block th:each = "per : ${people}">
+                <tr>
+                    <td th:text = "${per.idPerson}"></td>
+                    <td th:text = "${per.name}"></td>
+                </tr>
+            </th:block>
+        </table>
+        <p><a href="/">Home</a></p>
+    </body>
 </html>
