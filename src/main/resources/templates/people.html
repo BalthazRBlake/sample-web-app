@@ -1,24 +1,20 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Getting Started: Serving Web Content</title>
+        <title>People List</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <form action="/addP">
-            <fieldset>
-                name: <input type="text" name="name"/>
-                <input type="submit" value="Add!"/>
-            </fieldset>
-        </form>
-
-        <p th:text="'Added person, ' + ${personAdded} + '!'" />
-
+        <h1 th:text="#{msg.welcome}"></h1>
+        
         <table>
             <th:block th:each = "per : ${people}">
                 <tr>
                     <td th:text = "${per.idPerson}"></td>
                     <td th:text = "${per.name}"></td>
+                    <td th:text = "${per.surname}"></td>
+                    <td th:text = "${per.email}"></td>
+                    <td th:text = "${per.phone}"></td>
                 </tr>
             </th:block>
         </table>

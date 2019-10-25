@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Home</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h1 th:text="#{msg.welcome}"></h1>
+
+        <p>
+            <span th:text="#{msg.plist}">People list</span>
+            <a href="/list"> List</a>
+        </p>
+
+        <p>
+            <span th:text="#{msg.addplink}">Add person</span>
+            <a href="/addPersonForm">There</a>
+        </p>
+    </body>
+</html>

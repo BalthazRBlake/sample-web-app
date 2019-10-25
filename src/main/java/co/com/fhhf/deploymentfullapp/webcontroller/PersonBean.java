@@ -5,10 +5,13 @@ import co.com.fhhf.deploymentfullapp.service.PersonService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PersonBean {
@@ -18,21 +21,29 @@ public class PersonBean {
     @Autowired
     private PersonService servicePerson;
     
+    @Autowired
+    MessageSource mesageSource;
+       
     public PersonBean() {
         log.info("Object PersonaBean Init");
     }
-
-    @GetMapping("/addP") //hace map al metodo GET en la url indicada
-    public String adding(@RequestParam(name = "name", required = false, defaultValue = "") String name, Model model) {
-        Person p = new Person();
-        if (name.equals("")) {
-        }
-        else{
-            p.setName(name);
-            servicePerson.insertPerson(p);
-            model.addAttribute("personAdded", p.getName());
-        }
-        return "people"; //llama la vista (html) con ese nombre
+    
+    @RequestMapping(value="", method = {RequestMethod.GET, RequestMethod.POST})
+    public String index(){
+        return "home";
+    }
+    
+    @GetMapping("/addPersonForm")
+    public String insertPerson(Model model) {
+        Person per = new Person();
+        model.addAttribute("newPerson", per);
+        return "personForm";
+    }
+    
+    @RequestMapping(value="/addPerson", method = RequestMethod.POST)
+    public String addPerson(@ModelAttribute Person per){
+        servicePerson.insertPerson(per);
+        return "redirect:list";
     }
     
     @GetMapping("/list")
