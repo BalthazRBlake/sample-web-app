@@ -15,12 +15,12 @@ public class PersonBean {
 
     Logger log = LogManager.getLogger();
 
-    public PersonBean() {
-        log.info("Inicia Object PersonaBean");
-    }
-
     @Autowired
-    private PersonService service;
+    private PersonService servicePerson;
+    
+    public PersonBean() {
+        log.info("Object PersonaBean Init");
+    }
 
     @GetMapping("/addP") //hace map al metodo GET en la url indicada
     public String adding(@RequestParam(name = "name", required = false, defaultValue = "") String name, Model model) {
@@ -29,7 +29,7 @@ public class PersonBean {
         }
         else{
             p.setName(name);
-            service.addPerson(p);
+            servicePerson.insertPerson(p);
             model.addAttribute("personAdded", p.getName());
         }
         return "people"; //llama la vista (html) con ese nombre
@@ -37,7 +37,7 @@ public class PersonBean {
     
     @GetMapping("/list")
     public String listing(Model model){
-        model.addAttribute("people", service.personList());
+        model.addAttribute("people", servicePerson.personList());
         return "people";
     }
     

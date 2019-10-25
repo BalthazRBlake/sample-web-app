@@ -24,8 +24,8 @@ public class Person implements Serializable{
         this.idPerson = idPersona;
     }
     
-    public Person(String nombre){
-        this.name = nombre;
+    public Person(String name){
+        this.name = name;
     }
     
     public Integer getIdPerson() {
@@ -43,6 +43,4 @@ public class Person implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    
-    
 }

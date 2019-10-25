@@ -13,7 +13,7 @@ public class PersonServiceImpl implements PersonService{
     private IPersonRepo repo;
 
     @Override
-    public void addPerson(Person person) {
+    public void insertPerson(Person person) {
         repo.save(person);
     }
 
