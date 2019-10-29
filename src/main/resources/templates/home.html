@@ -8,13 +8,26 @@
         <h1 th:text="#{msg.welcome}"></h1>
 
         <p>
-            <span th:text="#{msg.plist}">People list</span>
+            <span th:text="#{msg.plist}"></span>
             <a href="/list"> List</a>
         </p>
 
         <p>
-            <span th:text="#{msg.addplink}">Add person</span>
-            <a href="/addPersonForm">There</a>
+            <span th:text="#{msg.addplink}"></span>
+            <a href="/action?action=1">Add</a>
         </p>
+
+        <p>
+            <span th:text="#{msg.findplink}"></span>
+            <a href="/action?action=2">Find</a>
+        </p>
+
+        <table>
+            <tr>
+                <td><a th:href="@{''(lang=en)}">Eng</a></td>
+                <td><a th:href="@{''(lang=es)}">Esp</a></td>
+                <td><a th:href="@{''(lang=ru)}">Рус</a></td>
+            </tr>
+        </table>
     </body>
 </html>

@@ -5,13 +5,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <h1 th:text="#{msg.welcome}"></h1>
-        
         <table>
             <th:block th:each = "per : ${people}">
                 <tr>
                     <td th:text = "${per.idPerson}"></td>
-                    <td th:text = "${per.name}"></td>
+                    <td >
+                        <a th:href="@{/{id}/edit(id=${per.idPerson})}" th:text="${per.name}"></a>
+                    </td>
                     <td th:text = "${per.surname}"></td>
                     <td th:text = "${per.email}"></td>
                     <td th:text = "${per.phone}"></td>

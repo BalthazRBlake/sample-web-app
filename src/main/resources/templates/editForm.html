@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Edit Person</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <form th:Object="${uPerson}" action="#" th:action="@{/{id}/updatePerson(id=${uPerson.idPerson})} "method="POST">
+            <table>
+                <tr>
+                    <td><label th:text="#{msg.id}"/></td>
+                    <td><label th:text="*{idPerson}"/></td>
+                </tr>
+                <tr>
+                    <td><label th:text="#{msg.name}"/></td>
+                    <td><input type="text" th:field="*{name}"/></td>
+                </tr>
+                <tr>
+                    <td><label th:text="#{msg.surname}"/></td>
+                    <td><input type="text" th:field="*{surname}"/></td>
+                </tr>
+                <tr>
+                    <td><label th:text="#{msg.email}"/></td>
+                    <td><input type="text" th:field="*{email}"/></td>
+                </tr>
+                <tr>
+                    <td><label th:text="#{msg.phone}"/></td>
+                    <td><input type="text" th:field="*{phone}"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" th:value="#{msg.update}"/>
+                    </td>
+                    <td><a th:href="@{/{id}/deletePerson(id=${uPerson.idPerson})}" th:text="#{msg.delete}">Delete</a></td>
+                </tr>
+            </table>
+        </form>
+
+        <p><a href="/">Home</a></p>
+    </body>
+</html>

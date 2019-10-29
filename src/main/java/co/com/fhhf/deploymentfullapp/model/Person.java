@@ -1,5 +1,9 @@
 package co.com.fhhf.deploymentfullapp.model;
 
+/**
+ *
+ * @author FHHF
+ */
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
