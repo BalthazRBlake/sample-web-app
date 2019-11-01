@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" th:fragment="layout (template, menu)">
+    <head>
+        <title>Home</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" th:href="@{/resources/css/bootstrap.minf.css}">
+    </head>
+    <body>
+        <!--NAVBAR-->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}"><span></span></a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+                    <span class="sr-only">Toggle navigation</span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- navbar-collapse -->
+            <div class="navbar-collapse collapse" id="main-navbar">
+                <!--div class="collapse nav navbar-nav navbar-right navbar-collapse" id="navcollapse"-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-text PARAGRAPH">
+                        <a th:href="@{/}">
+                            <span th:text="#{msg.home}"></span>
+                        </a>
+                    </li>
+                    <li class="navbar-text PARAGRAPH">
+                        <a th:href="@{/list}">
+                            <span th:text="#{msg.plist}"></span>
+                        </a>
+                    </li>
+                    <li class="navbar-text PARAGRAPH">
+                        <a th:href="@{/{action}/action(action=${1})}">
+                            <span th:text="#{msg.addplink}"></span>
+                        </a>
+                    </li>
+                    <li class="navbar-text PARAGRAPH">
+                        <a th:href="@{/{action}/action(action=${2})}">
+                            <span th:text="#{msg.findplink}"></span>
+                        </a>
+                    </li>
+                    <li class="navbar-text PARAGRAPH">
+                        <table>
+                            <span th:text="#{msg.language}"></span>
+                            <tr>
+                                <td><a th:href="@{''(lang=en)}">Eng&nbsp;</a></td>
+                                <td><a th:href="@{''(lang=es)}">Esp&nbsp;</a></td>
+                                <td><a th:href="@{''(lang=ru)}">Рус</a></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="navbar-text PARAGRAPH"></li>
+                </ul>    
+            </div><!-- end navbar-collapse -->
+        </nav>
+        <!-- END NAVBAR -->
+        <div class="container-fluid">
+            <div class="container xd-container">
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="container">
+                    <th:block th:include="${template}"/>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="nav" style="background-color:#585A5B; padding-top:20px; padding-bottom:15px">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <p class="text-muted">FHHF</p>
+                        </div>
+                        <div class="col-xs-6" style="padding-left:30%">
+                            <a href="https://github.com/BalthazRBlake/sample-web-app" target="_blank">
+                                <img src="../static/resources/images/github-512.png"
+                                     th:src="@{/resources/images/github-512.png}"
+                                     alt="www.github.com/BalthazRBlake/sample-web-app"
+                                     height="25" width="25"/>    
+                            </a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="https://www.linkedin.com/in/fabian-humberto-hern%C3%A1ndez-forero-11810a78/?locale=en_US" target="_blank">
+                                <img src="../static/resources/images/linkedin-icon-eps-29.jpg"
+                                     th:src="@{/resources/images/linkedin-icon-eps-29.jpg}"
+                                     alt="www.linkedin.com/in/fabian-humberto-hern%C3%A1ndez-forero-11810a78/?locale=en_US"
+                                     height="25" width="25"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

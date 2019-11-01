@@ -1,31 +1,37 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'people')}">
     <head>
         <title>People List</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <table border='1'>
-            <tr>
-                <th>Id</th>
-                <th><label th:text="#{msg.name}"/></th>
-                <th><label th:text="#{msg.surname}"/></th>
-                <th><label th:text="#{msg.email}"/></th>
-                <th><label th:text="#{msg.phone}"/></th>
-            </tr>
-            <th:block th:each = "per : ${people}">
-                <tr>
-                    <td th:text = "${per.idPerson}"></td>
-                    <td >
-                        <a th:href="@{/{id}/edit(id=${per.idPerson})}" th:text="${per.name}"></a>
-                    </td>
-                    <td th:text = "${per.surname}"></td>
-                    <td th:text = "${per.email}"></td>
-                    <td th:text = "${per.phone}"></td>
-                </tr>
-            </th:block>
-        </table>
-
-        <div th:insert="~{footer::copy}"></div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th><label th:text="#{msg.name}"/></th>
+                        <th><label th:text="#{msg.surname}"/></th>
+                        <th><label th:text="#{msg.email}"/></th>
+                        <th><label th:text="#{msg.phone}"/></th>
+                    </tr>
+                    <th:block th:each = "per : ${people}">
+                        <tr>
+                            <td th:text = "${per.idPerson}"></td>
+                            <td >
+                                <a th:href="@{/{id}/edit(id=${per.idPerson})}" th:text="${per.name}"></a>
+                            </td>
+                            <td th:text = "${per.surname}"></td>
+                            <td th:text = "${per.email}"></td>
+                            <td th:text = "${per.phone}"></td>
+                        </tr>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+        <br>
+        <br>
     </body>
 </html>

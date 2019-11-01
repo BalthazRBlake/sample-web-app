@@ -1,44 +1,50 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'editForm')}">
     <head>
         <title>Edit Person</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <form th:Object="${person}" action="#" th:action="@{/{id}/updatePerson(id=${person.idPerson})} "method="POST">
-            <table>
-                <tr>
-                    <td><label th:text="#{msg.id}"/></td>
-                    <td><label th:text="*{idPerson}"/></td>
-                </tr>
-                <tr>
-                    <td><label th:text="#{msg.name}"/></td>
-                    <td><input type="text" th:field="*{name}" /></td>
-                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-                </tr>
-                <tr>
-                    <td><label th:text="#{msg.surname}"/></td>
-                    <td><input type="text" th:field="*{surname}"/></td>
-                    <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname Error</td>
-                </tr>
-                <tr>
-                    <td><label th:text="#{msg.email}"/></td>
-                    <td><input type="text" th:field="*{email}"/></td>
-                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">eMail Error</td>
-                </tr>
-                <tr>
-                    <td><label th:text="#{msg.phone}"/></td>
-                    <td><input type="text" th:field="*{phone}"/></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" th:value="#{msg.update}"/>
-                    </td>
-                    <td><a th:href="@{/{id}/deletePerson(id=${person.idPerson})}" th:text="#{msg.delete}">Delete</a></td>
-                </tr>
-            </table>
-        </form>
-
-        <div th:insert="~{footer::copy}"></div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <form th:Object="${person}" action="#" th:action="@{/{id}/updatePerson(id=${person.idPerson})} "method="POST">
+                    <table class="table">
+                        <tr>
+                            <td><label th:text="#{msg.id}"/></td>
+                            <td><label th:text="*{idPerson}"/></td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{msg.name}"/></td>
+                            <td><input type="text" th:field="*{name}" /></td>
+                            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{msg.surname}"/></td>
+                            <td><input type="text" th:field="*{surname}"/></td>
+                            <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname Error</td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{msg.email}"/></td>
+                            <td><input type="text" th:field="*{email}"/></td>
+                            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">eMail Error</td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{msg.phone}"/></td>
+                            <td><input type="text" th:field="*{phone}"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" th:value="#{msg.update}"/>
+                            </td>
+                            <td><a class="btn" th:href="@{/{id}/deletePerson(id=${person.idPerson})}" th:text="#{msg.delete}">Delete</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
     </body>
 </html>
