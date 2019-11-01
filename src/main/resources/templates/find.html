@@ -5,31 +5,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        
-        <form th:Object="${fPerson}" action="#" th:action="@{/findPerson}" method="POST">
+
+        <form th:Object="${person}" action="#" th:action="@{/findPerson}" method="POST">
             <table>
                 <tr>
                     <td><label th:text="#{msg.id}"/></td>
-                    <td><input type="text" th:field="*{idPerson}"/></td>
+                    <td><input type="number" th:field="*{idPerson}"/></td>
                 </tr>
                 <tr>
                     <td><input type="submit" th:value="#{msg.find}"/></td>
                 </tr>
             </table>
         </form>
-        
+
         <p th:text="${found}"></p>
         <table>
-                <tr>
-                    <td th:text = "${fPerson.idPerson}"></td>
-                    <td>
-                        <a th:href="@{/{id}/edit(id=${fPerson.idPerson})}" th:text="${fPerson.name}"></a>
-                    </td>
-                    <td th:text = "${fPerson.surname}"></td>
-                    <td th:text = "${fPerson.email}"></td>
-                    <td th:text = "${fPerson.phone}"></td>
-                </tr>
+            <tr>
+                <td th:text = "${person.idPerson}"></td>
+                <td>
+                    <a th:href="@{/{id}/edit(id=${person.idPerson})}" th:text="${person.name}"></a>
+                </td>
+                <td th:text = "${person.surname}"></td>
+                <td th:text = "${person.email}"></td>
+                <td th:text = "${person.phone}"></td>
+            </tr>
         </table>
-        <p><a href="/">Home</a></p>
+
+        <div th:insert="~{footer::copy}"></div>
     </body>
 </html>

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 
 @Entity
 public class Person implements Serializable{
@@ -19,11 +20,18 @@ public class Person implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_person")
     private Integer idPerson;
+    
     @Column(name="name")
+    @NotEmpty
+    @Size(min=3, max=30)
     private String name;
     
+    @NotEmpty
+    @Size(min=3, max=30)
     private String surname;
-
+    
+    @NotEmpty
+    @Email
     private String email;
     
     private String phone;

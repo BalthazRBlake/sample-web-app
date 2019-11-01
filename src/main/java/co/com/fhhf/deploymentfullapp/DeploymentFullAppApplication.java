@@ -14,4 +14,4 @@ public class DeploymentFullAppApplication {
 		SpringApplication.run(DeploymentFullAppApplication.class, args);
 	}
 
-}
+} 

@@ -33,7 +33,7 @@ public class PersonServiceImpl implements PersonService {
         }catch(Throwable t){
             //t.printStackTrace();
             Person p = new Person();
-            p.setName("No Found");
+            p.setSurname("Not Found");
             return p;
         }
     }

@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <form th:Object="${uPerson}" action="#" th:action="@{/{id}/updatePerson(id=${uPerson.idPerson})} "method="POST">
+        <form th:Object="${person}" action="#" th:action="@{/{id}/updatePerson(id=${person.idPerson})} "method="POST">
             <table>
                 <tr>
                     <td><label th:text="#{msg.id}"/></td>
@@ -13,15 +13,18 @@
                 </tr>
                 <tr>
                     <td><label th:text="#{msg.name}"/></td>
-                    <td><input type="text" th:field="*{name}"/></td>
+                    <td><input type="text" th:field="*{name}" /></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
                 </tr>
                 <tr>
                     <td><label th:text="#{msg.surname}"/></td>
                     <td><input type="text" th:field="*{surname}"/></td>
+                    <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname Error</td>
                 </tr>
                 <tr>
                     <td><label th:text="#{msg.email}"/></td>
                     <td><input type="text" th:field="*{email}"/></td>
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">eMail Error</td>
                 </tr>
                 <tr>
                     <td><label th:text="#{msg.phone}"/></td>
@@ -31,11 +34,11 @@
                     <td>
                         <input type="submit" th:value="#{msg.update}"/>
                     </td>
-                    <td><a th:href="@{/{id}/deletePerson(id=${uPerson.idPerson})}" th:text="#{msg.delete}">Delete</a></td>
+                    <td><a th:href="@{/{id}/deletePerson(id=${person.idPerson})}" th:text="#{msg.delete}">Delete</a></td>
                 </tr>
             </table>
         </form>
 
-        <p><a href="/">Home</a></p>
+        <div th:insert="~{footer::copy}"></div>
     </body>
 </html>

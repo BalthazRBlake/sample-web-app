@@ -14,20 +14,14 @@
 
         <p>
             <span th:text="#{msg.addplink}"></span>
-            <a href="/action?action=1">Add</a>
+            <a th:href="@{/{action}/action(action=${1})}">Add</a>
         </p>
 
         <p>
             <span th:text="#{msg.findplink}"></span>
-            <a href="/action?action=2">Find</a>
+            <a th:href="@{/{action}/action(action=${2})}">Find</a>
         </p>
 
-        <table>
-            <tr>
-                <td><a th:href="@{''(lang=en)}">Eng</a></td>
-                <td><a th:href="@{''(lang=es)}">Esp</a></td>
-                <td><a th:href="@{''(lang=ru)}">Рус</a></td>
-            </tr>
-        </table>
+        <div th:insert="~{footer::copy}"></div>
     </body>
 </html>
