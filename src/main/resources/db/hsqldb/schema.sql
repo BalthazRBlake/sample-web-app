@@ -1,4 +1,5 @@
 DROP TABLE person IF EXISTS;
+DROP TABLE users IF EXISTS;
 
 CREATE TABLE person (
   id_person INTEGER IDENTITY PRIMARY KEY,
@@ -6,4 +7,12 @@ CREATE TABLE person (
   surname VARCHAR(45),
   email VARCHAR(45),
   phone VARCHAR(45)
+);
+
+CREATE TABLE users (
+  id INTEGER IDENTITY PRIMARY KEY,
+  user_name VARCHAR(45),
+  password VARCHAR(45),
+  roles VARCHAR(45),
+  active BOOLEAN
 );
