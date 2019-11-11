@@ -35,11 +35,6 @@ public class PersonBean {
         log.info("Object PersonaBean Init");
     }
 
-    @RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
-    public String index() {
-        return "home";
-    }
-
     @GetMapping("/{action}/action")
     public String actionPerson(@PathVariable("action") int action, Model model) {
         Person person = new Person();

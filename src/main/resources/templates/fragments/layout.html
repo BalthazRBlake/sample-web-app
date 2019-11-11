@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org" th:fragment="layout (template, menu)">
     <head>
-        <title>Home</title>
+        <title>FHHF</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" th:href="@{/resources/css/bootstrap.minf.css}">
+        <!--classpath:META-INF/resources/webjars/bootstrap/3.3.6/less/bootstrap.less-->
     </head>
     <body>
         <!--NAVBAR-->
@@ -18,9 +19,8 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <!-- navbar-collapse -->
+
             <div class="navbar-collapse collapse" id="main-navbar">
-                <!--div class="collapse nav navbar-nav navbar-right navbar-collapse" id="navcollapse"-->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="navbar-text PARAGRAPH">
                         <a th:href="@{/}">
@@ -52,11 +52,19 @@
                             </tr>
                         </table>
                     </li>
+                    <li class="navbar-text PARAGRAPH">
+                        <!--a th:href="@{/logout}">
+                            <span>Sing Out</span>
+                        </a-->
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </li>
                     <li class="navbar-text PARAGRAPH"></li>
                 </ul>    
-            </div><!-- end navbar-collapse -->
+            </div>
         </nav>
-        <!-- END NAVBAR -->
+
         <div class="container-fluid">
             <div class="container xd-container">
                 <br>

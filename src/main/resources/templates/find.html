@@ -1,9 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'find')}">
-    <head>
-        <title>Find Person</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
+
     <body>
         <br>
         <br>
@@ -22,7 +19,7 @@
                 </form>
 
                 <p th:text="${found}"></p>
-                <table>
+                <table class="table">
                     <tr>
                         <td th:text = "${person.idPerson}"></td>
                         <td>
