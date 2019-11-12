@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http
             .authorizeRequests()
                 .antMatchers("/{idPerson}/deletePerson").hasRole("ADMIN")
-                .antMatchers("/", "/home", "/resources/**","@{''(lang=en)}",
-                        "@{''(lang=es)}","@{''(lang=ru)}",
+                .antMatchers("/", "/home", "/resources/**", "/webjars/**",
+                        "@{''(lang=en)}", "@{''(lang=es)}","@{''(lang=ru)}",
                         "/add/default/users/admin-role-and-user-role").permitAll()
                 .anyRequest().authenticated()
                 .and()
