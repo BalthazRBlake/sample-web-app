@@ -1,4 +1,4 @@
-package co.com.fhhf.deploymentfullapp.i18n;
+package co.com.fhhf.deploymentfullapp.configuration;
 
 /**
  *
