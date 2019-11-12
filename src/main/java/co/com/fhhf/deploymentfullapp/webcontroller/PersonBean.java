@@ -29,7 +29,7 @@ public class PersonBean {
     Logger log = LogManager.getLogger();
 
     @Autowired
-    private PersonService servicePerson;
+    private PersonService personSerive;
 
     public PersonBean() {
         log.info("Object PersonaBean Init");
@@ -57,13 +57,13 @@ public class PersonBean {
             return "personForm";
         }
 
-        this.servicePerson.savePerson(person);
+        this.personSerive.savePerson(person);
         return "redirect:list";
     }
 
     @GetMapping("/list")
     public String listing(Model model) {
-        model.addAttribute("people", servicePerson.personList());
+        model.addAttribute("people", personSerive.personList());
         return "people";
     }
 
@@ -78,7 +78,7 @@ public class PersonBean {
             return "redirect:list";
         }
 
-        Person person = this.servicePerson.findById(fPerson.getIdPerson());
+        Person person = this.personSerive.findById(fPerson.getIdPerson());
         if (person.getSurname().equals("Not Found")) {
             return "redirect:list";
         }
@@ -90,7 +90,7 @@ public class PersonBean {
 
     @GetMapping("/{idPerson}/edit")
     public String initUpdate(@PathVariable("idPerson") int idPerson, Model model) {
-        Person person = servicePerson.findById(idPerson);
+        Person person = personSerive.findById(idPerson);
         model.addAttribute("person", person);
         return "editForm";
     }
@@ -103,14 +103,14 @@ public class PersonBean {
         }
 
         person.setIdPerson(idPerson);
-        this.servicePerson.savePerson(person);
+        this.personSerive.savePerson(person);
         return "redirect:/list";
     }
 
     @GetMapping("/{idPerson}/deletePerson")
     public String deletePerson(Person person, @PathVariable("idPerson") int idPerson) {
         person.setIdPerson(idPerson);
-        this.servicePerson.deletePerson(person);
+        this.personSerive.deletePerson(person);
         return "redirect:/list";
     }
 }
