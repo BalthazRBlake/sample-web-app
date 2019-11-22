@@ -74,6 +74,7 @@ public class PersonBean {
         User user = userService.findByName(principal.getName());
         
         model.addAttribute("people", user.getPeopleList());
+        model.addAttribute("principal", principal.getName());
         return "people";
     }
 
