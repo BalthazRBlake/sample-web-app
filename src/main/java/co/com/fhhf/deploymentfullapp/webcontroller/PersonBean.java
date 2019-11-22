@@ -5,7 +5,11 @@ package co.com.fhhf.deploymentfullapp.webcontroller;
  * @author FHHF
  */
 import co.com.fhhf.deploymentfullapp.model.Person;
+import co.com.fhhf.deploymentfullapp.model.User;
 import co.com.fhhf.deploymentfullapp.service.PersonService;
+import co.com.fhhf.deploymentfullapp.service.UserService;
+
+import java.security.Principal;
 
 import javax.validation.Valid;
 
@@ -30,6 +34,9 @@ public class PersonBean {
 
     @Autowired
     private PersonService personSerive;
+    
+    @Autowired
+    private UserService userService;
 
     public PersonBean() {
         log.info("Object PersonaBean Init");
@@ -52,18 +59,21 @@ public class PersonBean {
     }
 
     @RequestMapping(value = "/addPerson", method = RequestMethod.POST)
-    public String addPerson(@Valid Person person, BindingResult bindingResult) {
+    public String addPerson(@Valid Person person, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             return "personForm";
         }
-
+        User user = userService.findByName(principal.getName());
+        person.setUser(user);
         this.personSerive.savePerson(person);
         return "redirect:list";
     }
 
     @GetMapping("/list")
-    public String listing(Model model) {
-        model.addAttribute("people", personSerive.personList());
+    public String listing(Model model, Principal principal) {
+        User user = userService.findByName(principal.getName());
+        
+        model.addAttribute("people", user.getPeopleList());
         return "people";
     }
 

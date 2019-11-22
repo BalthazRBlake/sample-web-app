@@ -5,11 +5,14 @@ package co.com.fhhf.deploymentfullapp.model;
  * @author FHHF
  */
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.*;
 
 @Entity
@@ -36,6 +39,10 @@ public class Person implements Serializable{
     
     private String phone;
     
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    
     public Person(){}
     
     public Person(Integer idPersona){
@@ -47,6 +54,14 @@ public class Person implements Serializable{
         this.surname = surname;
         this.email = email;
         this.phone = phone;
+    }
+    
+    public Person(String name, String surname, String email, String phone, User user){
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.user = user;
     }
     
     public Integer getIdPerson() {
@@ -87,6 +102,14 @@ public class Person implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

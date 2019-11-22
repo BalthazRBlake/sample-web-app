@@ -6,7 +6,8 @@ CREATE TABLE person (
   name VARCHAR(45),
   surname VARCHAR(45),
   email VARCHAR(45),
-  phone VARCHAR(45)
+  phone VARCHAR(45),
+  user_id INTEGER NOT NULL
 );
 
 CREATE TABLE users (
