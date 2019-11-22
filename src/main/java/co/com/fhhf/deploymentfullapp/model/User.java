@@ -1,10 +1,14 @@
 package co.com.fhhf.deploymentfullapp.model;
 
+import java.util.*;
+import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,8 +32,16 @@ public class User {
     private String roles;
     
     private boolean active;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Person> peopleList;
 
     public User() {
+    }
+    
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
     
     public User(String userName, String password, String roles, boolean active) {
@@ -79,6 +91,14 @@ public class User {
         this.active = active;
     }
 
+    public List<Person> getPeopleList() {
+        return peopleList;
+    }
+
+    public void setPeopleList(List<Person> peopleList) {
+        this.peopleList = peopleList;
+    }
+    
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", userName=" + userName + ", password=" + password + ", roles=" + roles + ", active=" + active + '}';

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'userForm')}">
+
+    <body>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h1 th:text="#{msg.signUp}"></h1>
+                
+                <form th:Object="${user}" action="#" th:action="@{/newUser} "method="POST">
+                    <table class="table">
+                        <tr>
+                            <td><label th:text="#{msg.userName}"/></td>
+                            <td><input type="text" th:field="*{userName}" /></td>
+                            <td th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Name Error</td>
+                        </tr>
+                        <tr>
+                            <td><label th:text="#{msg.password}"/></td>
+                            <td><input type="password" th:field="*{password}"/></td>
+                            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Surname Error</td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" th:value="#{msg.submit}"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+    </body>
+</html>
