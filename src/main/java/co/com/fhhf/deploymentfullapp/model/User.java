@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -25,8 +26,12 @@ public class User {
     
     
     @Column(name="user_name")
+    @NotEmpty
+    @Size(min=3, max=30)
     private String userName;
     
+    @NotEmpty
+    @Size(min=3, max=30)
     private String password;
     
     private String roles;

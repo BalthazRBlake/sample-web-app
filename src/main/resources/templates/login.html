@@ -16,22 +16,14 @@
                     <table class="table">
                         <tr>
                             <td><label th:text="#{msg.userName}"/></td>
-                            <td><input type="text" name="username"/></td>
+                            <td><input type="text" name="username" placeholder="UserName"/></td>
                         </tr>
                         <tr>
                             <td><label th:text="#{msg.password}"/></td>
-                            <td><input type="password" name="password"/></td>
+                            <td><input type="password" name="password" placeholder="*****"/></td>
                         </tr>
                         <tr>
                             <td><input class="btn btn-outline-light btn-sm" type="submit" th:value="#{msg.login}"/></td>
-
-                            <td>
-                                <button type="button" class="btn btn-outline-light btn-sm">
-                                <a th:href="@{/user/new}">
-                                    <label th:text="#{msg.signUp}"/>
-                                </a>
-                                </button>
-                            </td>
                         </tr>
                     </table>
                 </form>

@@ -12,12 +12,12 @@
                     <table class="table">
                         <tr>
                             <td><label th:text="#{msg.userName}"/></td>
-                            <td><input type="text" th:field="*{userName}" /></td>
+                            <td><input type="text" th:field="*{userName}" placeholder="UserName"/></td>
                             <td th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Name Error</td>
                         </tr>
                         <tr>
                             <td><label th:text="#{msg.password}"/></td>
-                            <td><input type="password" th:field="*{password}"/></td>
+                            <td><input type="password" th:field="*{password}" placeholder="*****"/></td>
                             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Surname Error</td>
                         </tr>
                         <tr>

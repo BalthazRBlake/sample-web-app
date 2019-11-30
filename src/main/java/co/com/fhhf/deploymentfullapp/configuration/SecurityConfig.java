@@ -19,34 +19,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
     UserDetailsService userDetailService;
-    
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService);
     }
-    
+
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
-
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-                .antMatchers("/{idPerson}/deletePerson").hasRole("ADMIN")
+                .authorizeRequests()
                 .antMatchers("/", "/home", "/resources/**", "/webjars/**",
-                        "@{''(lang=en)}", "@{''(lang=es)}","@{''(lang=ru)}",
-                        "/user/new","/newUser",
-                        "/add/default/users/admin-role-and-user-role").permitAll()
+                        "@{''(lang=en)}", "@{''(lang=es)}", "@{''(lang=ru)}",
+                        "/user/new", "/newUser").permitAll()
                 .anyRequest().authenticated()
                 .and()
-            .formLogin()
+                .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .and()
-            .logout()
+                .logout()
                 .permitAll();
     }
-   
+
 }

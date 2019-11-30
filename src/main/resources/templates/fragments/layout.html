@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html th:fragment="layout (template, menu)">
+<html th:fragment="layout (template, menu)"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+    
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -34,17 +36,27 @@
                                 <span th:text="#{msg.home}"></span>
                             </a>
                         </li>
-                        <li class="navbar-text PARAGRAPH">
+                        <li class="navbar-text PARAGRAPH" sec:authorize="isAnonymous()">
+                            <a th:href="@{/login}">
+                                <span th:text="#{msg.login}"></span>
+                            </a>
+                        </li>
+                        <li class="navbar-text PARAGRAPH" sec:authorize="isAnonymous()">
+                            <a th:href="@{/user/new}">
+                                <span th:text="#{msg.signUp}"></span>
+                            </a>
+                        </li>
+                        <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
                             <a th:href="@{/list}">
                                 <span th:text="#{msg.plist}"></span>
                             </a>
                         </li>
-                        <li class="navbar-text PARAGRAPH">
+                        <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
                             <a th:href="@{/{action}/action(action=${1})}">
                                 <span th:text="#{msg.addplink}"></span>
                             </a>
                         </li>
-                        <li class="navbar-text PARAGRAPH">
+                        <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
                             <a th:href="@{/{action}/action(action=${2})}">
                                 <span th:text="#{msg.findplink}"></span>
                             </a>
@@ -59,9 +71,9 @@
                                 </tr>
                             </table>
                         </li>
-                        <li class="navbar-text PARAGRAPH">
+                        <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
                             <form th:action="@{/logout}" method="post">
-                                <input class="btn btn-outline-light btn-sm" type="submit" th:value="#{msg.logout}"/>
+                                <input class="btn btn-outline-light" type="submit" th:value="#{msg.logout}"/>
                             </form>
                         </li>
                     </ul>    

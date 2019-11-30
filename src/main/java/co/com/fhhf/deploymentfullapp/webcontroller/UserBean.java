@@ -3,7 +3,6 @@ package co.com.fhhf.deploymentfullapp.webcontroller;
 import co.com.fhhf.deploymentfullapp.model.User;
 import co.com.fhhf.deploymentfullapp.service.UserService;
 
-import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class UserBean {
 
     @Autowired
     private UserService userService;
-    
+       
     @GetMapping("/user/new")
     public String initNewUser(Model model){
         User user = new User();
@@ -41,19 +40,4 @@ public class UserBean {
         return "login";
     }
 
-    /*@GetMapping("/add/default/users/admin-role-and-user-role")
-    public String defaultUserAdmin() {
-
-        if (userService.findByName("admin").getUserName().equals("")) {
-            User userAdmin = new User("admin", "admin", "ROLE_ADMIN", true);
-            userService.saveUser(userAdmin);
-        }
-        
-        if (userService.findByName("user").getUserName().equals("")) {
-            User userUser = new User("user", "user", "ROLE_USER", true);
-            userService.saveUser(userUser);
-        }
-        
-        return "redirect:/home";
-    }*/
 }

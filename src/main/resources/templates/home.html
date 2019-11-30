@@ -2,15 +2,18 @@
 
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
-  <body>
+    <body>
 
-    
-    <div class="row">
-        <div class="col-md-12">
-            <h1 th:text="#{msg.welcome}"></h1>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 th:text="#{msg.welcome}"></h1>
+                <h1 th:if="${#authentication.name != 'anonymousUser'}">
+                    <span th:text="${#authentication.name}"/>
+                </h1>
+            </div>
         </div>
-    </div>
 
-  </body>
+    </body>
 
 </html>
