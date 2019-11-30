@@ -72,6 +72,11 @@
                             </table>
                         </li>
                         <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
+                            <a th:href="@{/userProfile}">
+                                <span th:text="#{msg.profile}"></span>
+                            </a>
+                        </li>
+                        <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
                             <form th:action="@{/logout}" method="post">
                                 <input class="btn btn-outline-light" type="submit" th:value="#{msg.logout}"/>
                             </form>
