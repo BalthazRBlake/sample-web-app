@@ -41,7 +41,7 @@ public class PersonBean {
     public PersonBean() {
         log.info("Object PersonaBean Init");
     }
-
+    
     @GetMapping("/{action}/action")
     public String actionPerson(@PathVariable("action") int action, Model model) {
         Person person = new Person();
