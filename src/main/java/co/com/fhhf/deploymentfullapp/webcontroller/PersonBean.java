@@ -9,6 +9,7 @@ import co.com.fhhf.deploymentfullapp.model.User;
 import co.com.fhhf.deploymentfullapp.service.PersonService;
 import co.com.fhhf.deploymentfullapp.service.UserService;
 
+import java.util.*;
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -20,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -123,5 +123,39 @@ public class PersonBean {
         person.setIdPerson(idPerson);
         this.personSerive.deletePerson(person);
         return "redirect:/list";
+    }
+    
+    @GetMapping("/people/find")
+    public String initFindForm(Model model){
+        model.addAttribute("person", new Person());
+        return "findPeople";
+    }
+    
+    @GetMapping("/user/People")
+    public String processFindForm(Person person, BindingResult result, Model model){
+        
+        if(person.getSurname() == null){
+            person.setSurname("");
+        }
+        
+        List<Person> results = this.personSerive.findBySurname(person.getSurname());
+        
+        if(results.isEmpty()){
+            
+            result.rejectValue("surname", "notFound", "notFound");
+            return "/findPeople";
+            
+        }else if(results.size() == 1){
+            
+            person = results.iterator().next();
+            model.addAttribute("person", person);
+            model.addAttribute("found", "Result: ");
+            return "find";
+            
+        }else{
+            
+            model.addAttribute("people", results);
+            return "people";
+        }
     }
 }

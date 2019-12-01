@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'find')}">
+
+    <body>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h1 th:text="#{msg.find}"></h1>
+                
+                <form th:Object="${person}" th:action="@{/user/People}" method="GET">
+                    <table class="table">
+                        <tr>
+                            <td><label th:text="#{msg.surname}"/></td>
+                            <td><input type="text" th:field="*{surname}"/></td>
+                            <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname Error</td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit" class="btn btn-outline-light" th:value="#{msg.find}"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+    </body>
+</html>

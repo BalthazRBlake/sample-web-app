@@ -7,6 +7,7 @@ package co.com.fhhf.deploymentfullapp.service;
 import co.com.fhhf.deploymentfullapp.model.Person;
 import co.com.fhhf.deploymentfullapp.repo.IPersonRepo;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void deletePerson(Person person) {
         repo.delete(person);
+    }
+
+    @Override
+    public List<Person> findBySurname(String surname) {
+        Optional<List<Person>> people = repo.findBySurname(surname);
+        return people.get();
     }
 
 }
