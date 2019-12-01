@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
-                            <a th:href="@{/{action}/action(action=${2})}">
+                            <a th:href="@{/people/find}">
                                 <span th:text="#{msg.findplink}"></span>
                             </a>
                         </li>
@@ -78,7 +78,7 @@
                         </li>
                         <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
                             <form th:action="@{/logout}" method="post">
-                                <input class="btn btn-outline-light" type="submit" th:value="#{msg.logout}"/>
+                                <button type="submit" class="btn btn-primary" th:text="#{msg.logout}"/>
                             </form>
                         </li>
                     </ul>    

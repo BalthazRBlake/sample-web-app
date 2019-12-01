@@ -6,6 +6,8 @@
         <br>
         <div class="row">
             <div class="col-md-6">
+                <h1 th:text="#{msg.add}"></h1>
+                
                 <form th:Object="${person}" action="#" th:action="@{/addPerson} "method="POST">
                     <table class="table">
                         <tr>
@@ -28,7 +30,9 @@
                             <td><input type="text" th:field="*{phone}"/></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" th:value="#{msg.submit}"/></td>
+                            <td>
+                                <button type="submit" class="btn btn-primary" th:text="#{msg.submit}"/>
+                            </td>
                         </tr>
                     </table>
                 </form>

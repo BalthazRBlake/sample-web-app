@@ -10,7 +10,7 @@
 
                 <div th:if="${#authentication.name != 'admin' and #authentication.name != 'user'}">
                 <form th:action="@{/deleteUser}" method="POST">
-                    <input class="btn btn-outline-light" type="submit" th:value="#{msg.delete}"/>
+                    <button type="submit" class="btn btn-primary" th:text="#{msg.delete}"/>
                 </form>
             </div>
         </div>

@@ -9,6 +9,7 @@ import co.com.fhhf.deploymentfullapp.model.User;
 import co.com.fhhf.deploymentfullapp.service.PersonService;
 import co.com.fhhf.deploymentfullapp.service.UserService;
 
+import java.util.*;
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -20,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,12 +86,12 @@ public class PersonBean {
         }
 
         if (fPerson.getIdPerson() == null) {
-            return "redirect:list";
+            return "redirect:/list";
         }
 
         Person person = this.personSerive.findById(fPerson.getIdPerson());
         if (person.getSurname().equals("Not Found")) {
-            return "redirect:list";
+            return "redirect:/list";
         }
 
         model.addAttribute("person", person);
@@ -127,5 +127,40 @@ public class PersonBean {
         person.setIdPerson(idPerson);
         this.personSerive.deletePerson(person);
         return "redirect:/list";
+    }
+    
+    @GetMapping("/people/find")
+    public String initFindForm(Model model){
+        model.addAttribute("person", new Person());
+        return "findPeople";
+    }
+    
+    @GetMapping("/user/People")
+    public String processFindForm(Person person, BindingResult result, Model model, Principal principal){
+        
+        if (result.hasErrors()) {
+            return "findPeople";
+        }
+        
+        User user = userService.findByName(principal.getName());
+        
+        List<Person> people = user.getPeopleList();
+        
+        List<Person> results = new ArrayList<>();
+        
+        for(Person personU : people){
+            if(personU.getSurname().equalsIgnoreCase(person.getSurname())){
+                results.add(personU);
+            }
+        }
+        
+        if (results.isEmpty()) {
+            return "redirect:/list";
+        }
+        
+        model.addAttribute("people", results);
+        model.addAttribute("found", true);
+        return "findPeople";
+                
     }
 }
