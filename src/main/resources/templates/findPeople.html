@@ -16,7 +16,9 @@
                             <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname Error</td>
                         </tr>
                         <tr>
-                            <td><button type="submit" class="btn btn-outline-light" th:value="#{msg.find}"/></td>
+                            <td>
+                                <button type="submit" class="btn btn-outline-light" th:text="#{msg.find}"/>
+                            </td>
                         </tr>
                     </table>
                 </form>

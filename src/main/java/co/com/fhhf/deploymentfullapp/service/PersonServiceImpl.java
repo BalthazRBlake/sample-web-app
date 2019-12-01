@@ -45,8 +45,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findBySurname(String surname) {
-        Optional<List<Person>> people = repo.findBySurname(surname);
+    public List<Person> findPersonBySurname(String surname) {
+        Optional<List<Person>> people = repo.findPersonBySurname(surname);
         return people.get();
     }
 

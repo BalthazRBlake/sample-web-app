@@ -107,13 +107,17 @@ public class PersonBean {
     }
 
     @PostMapping("/{idPerson}/updatePerson")
-    public String updatePerson(@Valid Person person, BindingResult bindingResult, @PathVariable("idPerson") int idPerson) {
+    public String updatePerson(@Valid Person person, BindingResult bindingResult,
+            @PathVariable("idPerson") int idPerson, Principal principal) {
 
         if (bindingResult.hasErrors()) {
             return "editForm";
         }
+        
+        User user = userService.findByName(principal.getName());
 
         person.setIdPerson(idPerson);
+        person.setUser(user);
         this.personSerive.savePerson(person);
         return "redirect:/list";
     }
@@ -132,30 +136,27 @@ public class PersonBean {
     }
     
     @GetMapping("/user/People")
-    public String processFindForm(Person person, BindingResult result, Model model){
+    public String processFindForm(Person person, BindingResult result, Model model, Principal principal){
         
-        if(person.getSurname() == null){
-            person.setSurname("");
+        if (result.hasErrors()) {
+            return "findPeople";
         }
         
-        List<Person> results = this.personSerive.findBySurname(person.getSurname());
+        User user = userService.findByName(principal.getName());
         
-        if(results.isEmpty()){
-            
-            result.rejectValue("surname", "notFound", "notFound");
-            return "/findPeople";
-            
-        }else if(results.size() == 1){
-            
-            person = results.iterator().next();
-            model.addAttribute("person", person);
-            model.addAttribute("found", "Result: ");
-            return "find";
-            
-        }else{
-            
-            model.addAttribute("people", results);
-            return "people";
+        List<Person> people = user.getPeopleList();
+        
+        List<Person> results = new ArrayList<Person>();
+        
+        for(Person personU : people){
+            if(personU.getSurname().equalsIgnoreCase(person.getSurname())){
+                results.add(personU);
+            }
         }
+        
+        model.addAttribute("people", results);
+        
+        return "people";
+                
     }
 }

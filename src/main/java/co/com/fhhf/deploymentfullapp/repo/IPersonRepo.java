@@ -10,5 +10,5 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IPersonRepo extends JpaRepository<Person, Integer>{
-    Optional<List<Person>> findBySurname(String surname);
+    Optional<List<Person>> findPersonBySurname(String surname);
 }

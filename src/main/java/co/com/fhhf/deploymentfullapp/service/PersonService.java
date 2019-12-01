@@ -21,7 +21,7 @@ public interface PersonService {
     @Transactional(readOnly = true)
     public Person findById(@Param("id") Integer id);
     
-    public List<Person> findBySurname(String surname);
+    public List<Person> findPersonBySurname(String surname);
        
     public void deletePerson(Person person);
 }
