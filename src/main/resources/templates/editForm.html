@@ -6,12 +6,10 @@
         <br>
         <div class="row">
             <div class="col-md-6">
+                <h1 th:text="#{msg.edit}"></h1>
+                
                 <form th:Object="${person}" action="#" th:action="@{/{id}/updatePerson(id=${person.idPerson})} "method="POST">
                     <table class="table">
-                        <tr>
-                            <td><label th:text="#{msg.id}"/></td>
-                            <td><label th:text="*{idPerson}"/></td>
-                        </tr>
                         <tr>
                             <td><label th:text="#{msg.name}"/></td>
                             <td><input type="text" th:field="*{name}" /></td>
@@ -33,9 +31,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" th:value="#{msg.update}"/>
+                                <button type="submit" class="btn btn-primary" th:text="#{msg.update}"/>
                             </td>
-                            <td><a class="btn btn-outline-light" th:href="@{/{id}/deletePerson(id=${person.idPerson})}" th:text="#{msg.delete}">Delete</a></td>
+                            <td th:if="${#authentication.name != 'admin'}">
+                                <a class="btn btn-primary" th:href="@{/{id}/deletePerson(id=${person.idPerson})}" th:text="#{msg.delete}"/>
+                            </td>
                         </tr>
                     </table>
                 </form>

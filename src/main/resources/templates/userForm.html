@@ -21,7 +21,9 @@
                             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Surname Error</td>
                         </tr>
                         <tr>
-                            <td><input type="submit" th:value="#{msg.submit}"/></td>
+                            <td>
+                                <button type="submit" class="btn btn-primary" th:text="#{msg.submit}"/>
+                            </td>
                         </tr>
                     </table>
                 </form>

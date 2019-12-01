@@ -86,12 +86,12 @@ public class PersonBean {
         }
 
         if (fPerson.getIdPerson() == null) {
-            return "redirect:list";
+            return "redirect:/list";
         }
 
         Person person = this.personSerive.findById(fPerson.getIdPerson());
         if (person.getSurname().equals("Not Found")) {
-            return "redirect:list";
+            return "redirect:/list";
         }
 
         model.addAttribute("person", person);
@@ -146,7 +146,7 @@ public class PersonBean {
         
         List<Person> people = user.getPeopleList();
         
-        List<Person> results = new ArrayList<Person>();
+        List<Person> results = new ArrayList<>();
         
         for(Person personU : people){
             if(personU.getSurname().equalsIgnoreCase(person.getSurname())){
@@ -154,9 +154,13 @@ public class PersonBean {
             }
         }
         
-        model.addAttribute("people", results);
+        if (results.isEmpty()) {
+            return "redirect:/list";
+        }
         
-        return "people";
+        model.addAttribute("people", results);
+        model.addAttribute("found", true);
+        return "findPeople";
                 
     }
 }

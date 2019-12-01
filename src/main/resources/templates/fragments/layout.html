@@ -78,7 +78,7 @@
                         </li>
                         <li class="navbar-text PARAGRAPH" sec:authorize="isAuthenticated()">
                             <form th:action="@{/logout}" method="post">
-                                <input class="btn btn-outline-light" type="submit" th:value="#{msg.logout}"/>
+                                <button type="submit" class="btn btn-primary" th:text="#{msg.logout}"/>
                             </form>
                         </li>
                     </ul>    
