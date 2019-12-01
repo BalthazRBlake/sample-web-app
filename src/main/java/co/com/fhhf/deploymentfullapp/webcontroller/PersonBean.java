@@ -107,13 +107,17 @@ public class PersonBean {
     }
 
     @PostMapping("/{idPerson}/updatePerson")
-    public String updatePerson(@Valid Person person, BindingResult bindingResult, @PathVariable("idPerson") int idPerson) {
+    public String updatePerson(@Valid Person person, BindingResult bindingResult,
+            @PathVariable("idPerson") int idPerson, Principal principal) {
 
         if (bindingResult.hasErrors()) {
             return "editForm";
         }
+        
+        User user = userService.findByName(principal.getName());
 
         person.setIdPerson(idPerson);
+        person.setUser(user);
         this.personSerive.savePerson(person);
         return "redirect:/list";
     }
