@@ -20,6 +20,8 @@ public interface PersonService {
     @Query("SELECT person FROM Person person WHERE person.idPerson = :idPerson")
     @Transactional(readOnly = true)
     public Person findById(@Param("id") Integer id);
+    
+    public List<Person> findPersonBySurname(String surname);
        
     public void deletePerson(Person person);
 }
